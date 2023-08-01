@@ -2,6 +2,8 @@ IBM Cloud IKS and ROKS clusters can leverage NFS-based PVCs out of the box with 
 This works for VPC-based and classic-based clusters. 
 
 VPC file share csi driver : https://github.com/IBM/ibm-vpc-file-csi-driver
+IBM kubernetes file share: https://cloud.ibm.com/docs/containers?topic=containers-storage-file-vpc-apps
+Enabling VPC file share on ROKS: https://cloud.ibm.com/docs/containers?topic=containers-storage-file-vpc-install
 
 ### Step 1
 Provision your cluster or skip to step 2 if you already have a cluster up
