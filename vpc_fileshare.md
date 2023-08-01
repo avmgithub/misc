@@ -279,6 +279,44 @@ W0801 11:37:51.434357   78893 warnings.go:70] would violate PodSecurity "restric
 pod/app created
 ```
 
+This pod yaml does not output any warnings when created.
+
+app1.yaml
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app1
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 3000
+    fsGroup: 0
+    seccompProfile:
+      type: RuntimeDefault
+  volumes:
+  - name: persistent-storage
+    persistentVolumeClaim:
+      claimName: my-pv
+  containers:
+  - name: sec-ctx-demo
+    image: busybox:1.28
+    command: [ "sh", "-c", "sleep 1h" ]
+    volumeMounts:
+    - name: persistent-storage
+      mountPath: /data/demo
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+```
+
+```
+# oc create -f app1.yaml 
+pod/app1 created
+```
+
 See:
 https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 https://github.com/kubernetes-sigs/kubebuilder/discussions/2840
