@@ -1,6 +1,8 @@
 IBM Cloud IKS and ROKS clusters can leverage NFS-based PVCs out of the box with no additional CSI driver setup. 
 This works for VPC-based and classic-based clusters. 
 
+VPC file share csi driver : https://github.com/IBM/ibm-vpc-file-csi-driver
+
 ### Step 1
 Provision your cluster or skip to step 2 if you already have a cluster up
 
@@ -238,6 +240,47 @@ Tue Aug 1 13:06:19 UTC 2023
 ^C
 ```
 
+### Step 5
+Use the pvc in your application
+
+app.yaml
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+  annotations:
+    openshift.io/scc: privileged
+spec:
+  securityContext:
+    fsGroup: 0
+  containers:
+  - name: app
+    image: nginx
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do echo $(date -u) >> /test/test1.txt; sleep 5; done"]
+    volumeMounts:
+    - name: persistent-storage
+      mountPath: /test
+  volumes:
+  - name: persistent-storage
+    persistentVolumeClaim:
+      claimName: my-pv
+```
+
+Note that fsGroup: 0 is used in the example to provide root permissions.
+
+On ROKS 4.12, you will get a warning like this because of changes in SCC
+```bash
+oc create -f app.yaml 
+W0801 11:37:51.434357   78893 warnings.go:70] would violate PodSecurity "restricted:v1.24": allowPrivilegeEscalation != false (container "app" must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities (container "app" must set securityContext.capabilities.drop=["ALL"]), runAsNonRoot != true (pod or container "app" must set securityContext.runAsNonRoot=true), seccompProfile (pod or container "app" must set securityContext.seccompProfile.type to "RuntimeDefault" or "Localhost")
+pod/app created
+```
+
+See:
+https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+https://github.com/kubernetes-sigs/kubebuilder/discussions/2840
+https://github.com/redhat-openshift-ecosystem/community-operators-prod/discussions/1417
 
 
 At this point, your PVC should show a status of `Bound` in a few seconds. If not, double-check the above YAML definitions
