@@ -318,9 +318,14 @@ pod/app1 created
 ```
 
 See:
-https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
-https://github.com/kubernetes-sigs/kubebuilder/discussions/2840
-https://github.com/redhat-openshift-ecosystem/community-operators-prod/discussions/1417
+
+https://kubernetes.io/docs/tasks/configure-pod-container/security-context/  
+
+https://github.com/kubernetes-sigs/kubebuilder/discussions/2840  
+
+https://github.com/redhat-openshift-ecosystem/community-operators-prod/discussions/1417  
+
+https://kubernetes.io/docs/tasks/configure-pod-container/security-context/  
 
 
 At this point, your PVC should show a status of `Bound` in a few seconds. If not, double-check the above YAML definitions
