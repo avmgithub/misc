@@ -1,6 +1,6 @@
 ## References
-https://docs.openshift.com/container-platform/4.10/logging/cluster-logging-deploying.html
-https://docs.openshift.com/container-platform/4.10/logging/cluster-logging-external.html
+- https://docs.openshift.com/container-platform/4.10/logging/cluster-logging-deploying.html
+- https://docs.openshift.com/container-platform/4.10/logging/cluster-logging-external.html
 
 
 Namespace for logging file: logging-namespace.yaml
