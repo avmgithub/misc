@@ -1,9 +1,15 @@
 ## References
-- https://docs.openshift.com/container-platform/4.10/logging/cluster-logging-deploying.html
-- https://docs.openshift.com/container-platform/4.10/logging/cluster-logging-external.html
+- https://docs.openshift.com/container-platform/4.12/logging/cluster-logging-deploying.html
+- https://docs.openshift.com/container-platform/4.12/logging/cluster-logging-external.html
 
 
-Namespace for elastic search operator file: eo-namespace.yaml
+### Create namespace for elastic search operator.
+
+```
+oc create -f eo-namespace.yaml
+```
+
+File: eo-namespace.yaml
 ```
 apiVersion: v1
 kind: Namespace
@@ -15,35 +21,15 @@ metadata:
     openshift.io/cluster-monitoring: "true"
 ```
 
-Elastic search operator file: eo-og.yaml
+
+
+### Create namespace for Logging Operator.
+
 ```
-apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: openshift-operators-redhat
-  namespace: openshift-operators-redhat
-spec: {}
+oc create -f olo-namespace.yaml
 ```
 
-Elastic Search subscrption file: eo-sub.yaml  
-```
-kind: Subscription
-metadata:
-  name: "elasticsearch-operator"
-  namespace: "openshift-operators-redhat"
-spec:
-  channel: "stable-5.1"
-  installPlanApproval: "Automatic"
-  source: "redhat-operators"
-  sourceNamespace: "openshift-marketplace"
-  name: "elasticsearch-operator"
-```
-
-
-
-
-
-Namespace for Logging Operator Instance file: olo-namespace.yaml
+File: olo-namespace.yaml
 ```
 apiVersion: v1
 kind: Namespace
@@ -55,7 +41,55 @@ metadata:
     openshift.io/cluster-monitoring: "true"
 ```
 
-Logging operator group file : olo-og.yaml
+### Create operator group for elastic search operator
+
+```
+oc create -f eo-og.yaml
+```
+
+File: eo-og.yaml
+```
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-operators-redhat
+  namespace: openshift-operators-redhat
+spec: {}
+```
+
+
+### Create subscription for elastic search operator
+
+```
+oc create -f eo-sub.yaml
+```
+
+File: eo-sub.yaml  
+```
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: "elasticsearch-operator"
+  namespace: "openshift-operators-redhat" 
+spec:
+  channel: "stable-5.5" 
+  installPlanApproval: "Automatic" 
+  source: "redhat-operators" 
+  sourceNamespace: "openshift-marketplace"
+  name: "elasticsearch-operator"
+```
+
+### Verify operator installation
+```
+oc get csv --all-namespaces
+```
+
+### Create logging operator group
+```
+oc create -f olo-og.yaml
+```
+
+File : olo-og.yaml
 ```
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
@@ -68,7 +102,13 @@ spec:
 ```
 
 
-Logging operator subscription file: olo-sub.yaml
+### Create subscription for logging operator
+
+```
+oc create -f olo-sub.yaml
+```
+
+File: olo-sub.yaml
 ```
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
@@ -82,6 +122,16 @@ spec:
   sourceNamespace: openshift-marketplace
 ```
 
+
+### Verify operator installation
+```
+oc get csv -n openshift-logging
+```
+
+### Create instance of logging (NOTE: This may not be needed as we will not use the OpenShift console)
+```
+oc create -f olo-instance.yaml
+```
 
 
 Logging operator instance file: olo-instance.yaml 
@@ -130,7 +180,13 @@ spec:
 ```
 
 
-Log forwarding instance file: logfwd-instance.yaml
+
+### Create instance of logging forwarding 
+```
+oc create -f logfwd-instance.yaml
+```
+
+File: logfwd-instance.yaml
 ```
 apiVersion: "logging.openshift.io/v1"
 kind: ClusterLogForwarder
