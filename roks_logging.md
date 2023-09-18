@@ -3,7 +3,7 @@
 - https://docs.openshift.com/container-platform/4.10/logging/cluster-logging-external.html
 
 
-Namespace for logging file: logging-namespace.yaml
+Namespace for elastic search operator file: eo-namespace.yaml
 ```
 apiVersion: v1
 kind: Namespace
