@@ -5,6 +5,7 @@ Reference: https://www.ibm.com/support/pages/how-configure-vnc-server-red-hat-en
 
 Once the vncserver setup is complete. Create the following xstartup file in $HOME/.vnc/xstartup
 
+```
 #!/bin/sh
 
 unset SESSION_MANAGER
@@ -27,3 +28,4 @@ gnome-session --session=gnome-classic --disable-acceleration-check &
 if [ -e /usr/bin/gnome-session ]; then
     vncserver -kill $DISPLAY
 fi
+```
