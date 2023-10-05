@@ -197,3 +197,7 @@ https://docs.openshift.com/container-platform/4.13/cicd/builds/creating-build-in
 
 
 https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html/builds/understanding-buildconfigs#builds-buildconfig_understanding-builds
+
+
+Create push/pull secret
+oc --namespace <project> create secret docker-registry <secret_name> --docker-server=<registry_URL> --docker-username=iamapikey --docker-password=<api_key_value> --docker-email=<docker_email>
