@@ -128,3 +128,9 @@ Add the image pull secret to the default service account of your project.
 
 Now that you set up the internal registry with an accessible route, you can log in, push, and pull images to the registry. For more information, see the Red Hat OpenShift documentation.
 
+
+## Creating an image pull secret with different IAM API key credentials
+https://cloud.ibm.com/docs/openshift?topic=openshift-registry#other_registry_accounts
+
+## Setting up builds in the internal registry to push images to IBM Cloud Container Registry
+https://cloud.ibm.com/docs/openshift?topic=openshift-registry#builds_registry
