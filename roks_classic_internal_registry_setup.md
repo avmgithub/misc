@@ -203,10 +203,16 @@ Create push/pull secret
 oc --namespace <project> create secret docker-registry <secret_name> --docker-server=<registry_URL> --docker-username=iamapikey --docker-password=<api_key_value> --docker-email=<docker_email>
 
 Create service ID for pull secret
+```
 ibmcloud iam service-id-create <cluster_name>-<project>-id --description "Service ID for IBM Cloud Container Registry in Red Hat OpenShift on IBM Cloud cluster <cluster_name> project <project>"
+```
 
 Assign service id roles
+```
 ibmcloud iam service-policy-create <cluster_service_ID> --roles <service_access_role> --service-name container-registry [--region <IAM_region>] [--resource-type namespace --resource <registry_namespace>]
+```
 
-The create API key
+Then create API key
+```
 ibmcloud iam service-api-key-create <cluster_name>-<project>-key <cluster_name>-<project>-id --description "API key for service ID <service_id> in Red Hat OpenShift on IBM Cloud cluster <cluster_name> project <project>"
+```
