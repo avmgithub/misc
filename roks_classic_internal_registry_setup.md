@@ -191,6 +191,8 @@ https://cloud.ibm.com/docs/openshift?topic=openshift-registry#builds_registry
 
 ## Creating build inputs
 
+https://access.redhat.com/documentation/en-us/openshift_container_platform/4.12/html/building_applications/index
+
 https://docs.openshift.com/container-platform/4.13/cicd/builds/creating-build-inputs.html
 
 
