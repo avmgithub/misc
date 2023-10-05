@@ -132,5 +132,58 @@ Now that you set up the internal registry with an accessible route, you can log 
 ## Creating an image pull secret with different IAM API key credentials
 https://cloud.ibm.com/docs/openshift?topic=openshift-registry#other_registry_accounts
 
+```
+$ ibmcloud iam service-id-create TelmexWatsonServices-pydemo-id --description "Service ID for IBM Cloud Container Registry in Red Hat OpenShift on IBM Cloud cluster TelmexWatsonServices[D project pydemo"
+Creating service ID TelmexWatsonServices-pydemo-id bound to current account as MENDOZA1@US.IBM.COM...
+OK
+Service ID TelmexWatsonServices-pydemo-id is created successfully
+              
+ID            ServiceId-d08c4f0e-0ac2-4b30-8f6c-313121e5dde0
+Name          TelmexWatsonServices-pydemo-id
+Description   Service ID for IBM Cloud Container Registry in Red Hat OpenShift on IBM Cloud cluster TelmexWatsonServices[D project pydemo
+CRN           crn:v1:bluemix:public:iam-identity::a/960eb4fe766aace37330f2d0c0729e7e::serviceid:ServiceId-d08c4f0e-0ac2-4b30-8f6c-313121e5dde0
+Version       1-f0aed7b1e4fdc70f7d1570987ad1a7dd
+Locked        false
+```
+```
+$ ibmcloud iam service-policy-create ServiceId-d08c4f0e-0ac2-4b30-8f6c-313121e5dde0  --roles Reader,Writer --service-name container-registry --region us-south --resource-type namespace --resource pydemo
+Creating policy under current account for service ID ServiceId-d08c4f0e-0ac2-4b30-8f6c-313121e5dde0 as MENDOZA1@US.IBM.COM...
+OK
+Service policy is successfully created
+
+             
+Policy ID:   4364da1a-5bde-4c76-9f12-9022b7baa258
+Version:     1-a87c6b7290bb93dbac52c73f04848456
+Roles:       Reader, Writer
+Resources:                   
+             Service Name    container-registry
+             Region          us-south
+             Resource Type   namespace
+             Resource        pydemo
+```
+
+```
+$ ibmcloud iam service-api-key-create TelmexWatsonServices-pydemo-key TelmexWatsonServices-pydemo-id --description "API key for service ID ServiceId-d08c4f0e-0ac2-4b30-8f6c-313121e5dde0 in Red Hat OpenShift on IBM Cloud cluster TelmexWatsonServices project pydemo"
+Creating API key TelmexWatsonServices-pydemo-key of service ID TelmexWatsonServices-pydemo-id under account 960eb4fe766aace37330f2d0c0729e7e as MENDOZA1@US.IBM.COM...
+OK
+Service ID API key TelmexWatsonServices-pydemo-key is created
+
+Please preserve the API key! It cannot be retrieved after it's created.
+              
+ID            ApiKey-e2e901f9-5183-41cc-aae3-ce7a0800e5c7
+Name          TelmexWatsonServices-pydemo-key
+Description   API key for service ID ServiceId-d08c4f0e-0ac2-4b30-8f6c-313121e5dde0 in Red Hat OpenShift on IBM Cloud cluster TelmexWatsonServices project pydemo
+Created At    2023-10-05T00:27+0000
+API Key       XOj4Xan9XXXLSDUbXXXoXak8QG8YYYlGdhT7ZZZ7bcJ9
+Locked        false
+```
+
+Create the pull secret in the namespace
+
+```
+$ oc --namespace pydemo create secret docker-registry us-south-icr-io-secret  --docker-server=us.icr.io --docker-username=iamapikey --docker-password=XOj4Xan9XXXLSDUbXXXoXak8QG8YYYlGdhT7ZZZ7bcJ9 --docker-email=mendoza1@us.ibm.com
+secret/us-south-icr-io-secret created
+```
+
 ## Setting up builds in the internal registry to push images to IBM Cloud Container Registry
 https://cloud.ibm.com/docs/openshift?topic=openshift-registry#builds_registry
