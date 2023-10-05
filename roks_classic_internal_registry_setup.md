@@ -17,8 +17,10 @@ oc get route image-registry -n openshift-image-registry
 ```
 
 Edit the route to set the load balancing strategy to source so that the same client IP address reaches the same server, as in a passthrough route setup. You can set the strategy by adding an annotation in the metadata.annotations section: haproxy.router.openshift.io/balance: source. You can edit the configuration file from the Red Hat OpenShift Application Console or in your command line by running the following command.
-oc edit route image-registry -n openshift-image-registry
 
+```
+oc edit route image-registry -n openshift-image-registry
+```
 Add the annotation.
 
 ```
