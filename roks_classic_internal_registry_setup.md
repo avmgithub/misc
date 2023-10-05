@@ -187,3 +187,7 @@ secret/us-south-icr-io-secret created
 
 ## Setting up builds in the internal registry to push images to IBM Cloud Container Registry
 https://cloud.ibm.com/docs/openshift?topic=openshift-registry#builds_registry
+
+## Creating build inputs
+https://docs.openshift.com/container-platform/4.13/cicd/builds/creating-build-inputs.html
+[https://docs.openshift.com/container-platform/4.13/cicd/builds/creating-build-inputs.html](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html/builds/understanding-buildconfigs#builds-buildconfig_understanding-builds)https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html/builds/understanding-buildconfigs#builds-buildconfig_understanding-builds
