@@ -216,3 +216,8 @@ Then create API key
 ```
 ibmcloud iam service-api-key-create <cluster_name>-<project>-key <cluster_name>-<project>-id --description "API key for service ID <service_id> in Red Hat OpenShift on IBM Cloud cluster <cluster_name> project <project>"
 ```
+
+Copy secret from one namespace to another
+```
+oc get secret localdockerreg --namespace=default -oyaml | kubectl apply --namespace=dev -f -
+```
