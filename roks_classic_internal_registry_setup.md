@@ -219,5 +219,5 @@ ibmcloud iam service-api-key-create <cluster_name>-<project>-key <cluster_name>-
 
 Copy secret from one namespace to another
 ```
-oc get secret localdockerreg --namespace=default -oyaml | kubectl apply --namespace=dev -f -
+oc get secret localdockerreg --namespace=default -oyaml |grep -v '^\s*namespace:\s' | kubectl apply --namespace=dev -f -
 ```
