@@ -1,6 +1,7 @@
 ## References
 - https://docs.openshift.com/container-platform/4.12/logging/cluster-logging-deploying.html
 - https://docs.openshift.com/container-platform/4.12/logging/cluster-logging-external.html
+- https://docs.openshift.com/container-platform/4.12/logging/log_collection_forwarding/cluster-logging-collector.html
 
 
 ### Create namespace for elastic search operator.
