@@ -2,25 +2,25 @@ Red Hat Enterprise uses firewalld whose rules does not relate back to iptables. 
 
 Sample commands:
 
-sudo systemctl stop firewalld
+- sudo systemctl stop firewalld
+- sudo firewall-cmd
+- sudo firewall-cmd --status
+- sudo firewall-cmd -h
+- sudo firewall-cmd --list-services
+- sudo firewall-cmd --permanent --add-port=514/tcp
+- sudo systemctl start firewalld
+- sudo firewall-cmd --reload
+- sudo firewall-cmd --list-services
+- sudo firewall-cmd --list
+- sudo firewall-cmd --list-all-policies
+- sudo firewall-cmd --list-all-policies
+- sudo firewall-cmd --list-ports
+- sudo firewall-cmd --list-protocols
+- sudo firewall-cmd --status
+- sudo firewall-cmd --state
+- sudo firewall-cmd --list-all
 
-
-sudo firewall-cmd
-sudo firewall-cmd --status
-sudo firewall-cmd -h
-firewall-cmd --list-services
-firewall-cmd --permanent --add-port=514/tcp
-sudo systemctl start firewalld
-sudo firewall-cmd --permanent --add-port=514/tcp
-sudo firewall-cmd --reload
-sudo firewall-cmd --list-services
-firewall-cmd --list
-  133  firewall-cmd --list-all-policies
-  134  sudo firewall-cmd --list-all-policies
-  135  sudo firewall-cmd --list-ports
-  136  sudo firewall-cmd --list-protocols
-  139  sudo firewall-cmd --status
-  140  sudo firewall-cmd
-  141  sudo firewall-cmd -h
-  142  sudo firewall-cmd --state
-  143  sudo firewall-cmd --list-all
+### Add a port and make it permanent
+- sudo firewall-cmd --add-port=port-number/port-type
+- sudo firewall-cmd --runtime-to-permanent
+- sudo firewall-cmd --list-ports
