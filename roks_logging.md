@@ -3,6 +3,8 @@
 - https://docs.openshift.com/container-platform/4.12/logging/cluster-logging-external.html
 - https://docs.openshift.com/container-platform/4.12/logging/log_collection_forwarding/cluster-logging-collector.html
 - https://cloud.ibm.com/docs/openshift?topic=openshift-health-audit#audit-worker
+### Forward logs from apiserver in IBM ROKS
+- https://cloud.ibm.com/docs/openshift?topic=openshift-health-audit
 
 
 ### Create namespace for elastic search operator.
