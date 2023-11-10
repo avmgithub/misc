@@ -6,7 +6,7 @@ Sample commands:
 
 - sudo systemctl stop firewalld
 - sudo firewall-cmd
-- sudo firewall-cmd --status
+- sudo firewall-cmd --state
 - sudo firewall-cmd -h
 - sudo firewall-cmd --list-services
 - sudo firewall-cmd --permanent --add-port=514/tcp
