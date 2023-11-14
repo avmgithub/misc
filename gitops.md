@@ -14,6 +14,9 @@ https://cloud.redhat.com/blog/your-guide-to-continuous-delivery-with-openshift-g
 
 https://demo.openshift.com/en/latest/argocd/
 
+#### Branching strategy
+https://nvie.com/posts/a-successful-git-branching-model/
+
 #### Creating pull secret for private registries - IBM cloud docs
 
 https://cloud.ibm.com/docs/containers?topic=containers-registry#other_registry_accounts
