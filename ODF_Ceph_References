@@ -3,6 +3,13 @@ https://access.redhat.com/articles/4628891
 https://access.redhat.com/articles/7004852
 ----
 
+
+1) Apply SELinux relabeling workaround for PV/PVC:
+https://access.redhat.com/solutions/6906261
+for the known OCP issue:
+https://access.redhat.com/solutions/6221251
+Concern here is that these steps require delete PVC, which we think might be dangerous to perform on Production environment due to risk of data loss.
+
 I. Changing storage device class
 -- Modifying the device class where OSD devices are not currently defined with correct class, in this case device class is set to HDD but the backing storage is high tier flash disk (SSD).
 This was discussed on the call and customer confirmed the disks are flash media. Below are the steps to make the changes machineconfig and rotational change.
