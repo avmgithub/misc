@@ -1,6 +1,6 @@
 https://access.redhat.com/articles/4628891
 ----
-https://access.redhat.com/articles/7004852
+[link](https://access.redhat.com/articles/7004852)
 ----
 
 
@@ -17,6 +17,8 @@ This was discussed on the call and customer confirmed the disks are flash media.
 Custom Machine Config Pool in OpenShift 4
 
 [1]: [link](https://access.redhat.com/solutions/5688941)
+
+[link](https://access.redhat.com/solutions/5688941)
 
 -- Rollout a new mc for udev rules (all of the back-end storage is flash) so rotational = 0
 Override device rotational flag in OCS/ODF environments
